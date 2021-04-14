@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import herokuva from '../etusivu.jpg';
 
 const Header = ({pageTitle}) => {
@@ -6,9 +7,8 @@ const Header = ({pageTitle}) => {
       <header>
       <nav className="navigation">
         <ul>
-          <li><a href="#">Reseptit</a></li>
-          <li><a href="#">Lisää resepti</a></li>
-          <li><a href="#">Hakue</a></li>
+          <li><Link to ='/'>Reseptit</Link></li>
+          <li><Link to ='/addrecipe'>Lisää resepti</Link></li>
         </ul>
       </nav>
       <div className="hero" style={{ backgroundImage:`url(${herokuva})` }}>
