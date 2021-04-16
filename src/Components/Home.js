@@ -35,15 +35,15 @@ class Home extends Component {
                             recipe => 
                             <div className="row" key={recipe._id}>
                             <div className="col-sm-6 col-12">
-                              <h2><Link to={{pathname: `/${recipe._id}`, singleRecipe: `${JSON.stringify(recipe)}`}}>{recipe.nimi}</Link></h2>
+                              <h2><Link to={{pathname: `/${recipe._id}`, singleRecipe: `${JSON.stringify(recipe)}`}}>{recipe.name}</Link></h2>
                               <p>
                                   <Link key = {recipe._id} to={{pathname: `/${recipe._id}`, singleRecipe: `${JSON.stringify(recipe)}`}}>
-                                      <span onClick= {this.getRecipe}>Reseptiin</span>
+                                      <span onClick= {this.getRecipe}>Read the recipe</span>
                                   </Link>
                               </p>
                             </div>
                             <div className="col-sm-6 col-12">
-                              <img src={recipe.image} className="img-fluid" alt="herokuva" />
+                              <img src={recipe.image} className="img-fluid" alt={recipe.name} />
                             </div>
                           </div>
                         )
