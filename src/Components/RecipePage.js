@@ -4,20 +4,19 @@ import axios from 'axios';
 import '../index.css';
 import 'react-tabs/style/react-tabs.css';
 
-const deleteById = id => axios.delete(`http://localhost:5000/api/recipes/${id}`)  
+const apiUrl = `http://localhost:8080`;
+const config = {
+  headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'},
+}
+const deleteById = id => axios.delete(apiUrl + "/delete-recipe/" + id, config)
 class Delete extends Component {
   deleteUser = event => {
       event.preventDefault()
-
-      if (
-          window.confirm(
-              `Do tou want to delete the movie ${this.props.id} permanently?`,
-          )
-      ) {
-          deleteById(this.props.id)
-          let url = `http://${window.location.hostname}:${window.location.port}/reseptikirja`
-          window.location.href = url;
-      }
+      deleteById(this.props.id)  
+      setTimeout(() => { 
+        let url = `http://${window.location.hostname}:${window.location.port}/reseptikirja`
+        window.location.href = url;
+      }, 1500);  
   }
 
   render() {
@@ -26,14 +25,15 @@ class Delete extends Component {
 }
 const RecipePage = (props) => {
   let recipe = JSON.parse(props.location.singleRecipe);
+  const ingredients = recipe.ingredients;
     return (
       <div className="container">
         <div className="main">
           <div className="row">
             <div className="col-12 text-center">
             <div className="my-5">
-                <h2>{recipe.nimi}</h2>
-                <img src={recipe.image} alt= {recipe.nimi} className = "max500"/>
+                <h2>{recipe.name}</h2>
+                <img src={recipe.image} alt= {recipe.name} className = "max500 img-fluid"/>
             </div>
             <div className="my-5">
               <Tabs>
@@ -42,10 +42,12 @@ const RecipePage = (props) => {
                   <Tab>Ohjeet</Tab>
                 </TabList>
                 <TabPanel>
-                  <p>{recipe.ainesosat}</p>
+                    {ingredients.map((ingredient, index) => {
+                      return <p key={index}>{ingredient.ingredient} {ingredient.amount} {ingredient.type}</p>
+                    })}
                 </TabPanel>
                 <TabPanel>
-                  <p>{recipe.ohjeet}</p>
+                  <p>{recipe.instructions}</p>
                 </TabPanel>
               </Tabs>
               </div>

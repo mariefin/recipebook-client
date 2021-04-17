@@ -34,11 +34,10 @@ export default class Add extends Component {
   showMsgSend() {
     this.showMsg();
     setTimeout(() => { this.sendData();}, 1000);
-    /*setTimeout(() => { 
+    setTimeout(() => { 
         let url = `http://${window.location.hostname}:${window.location.port}/reseptikirja`
         window.location.href = url;
-      }, 1500);*/
-    
+      }, 1500);    
   }
   eventhandler = data => ingredients = data
 
