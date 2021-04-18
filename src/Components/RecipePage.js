@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import axios from 'axios';
 import '../index.css';
 import 'react-tabs/style/react-tabs.css';
+import { Link } from 'react-router-dom';
 
 const apiUrl = `http://localhost:8080`;
 const config = {
@@ -14,7 +15,7 @@ class Delete extends Component {
       event.preventDefault()
       deleteById(this.props.id)  
       setTimeout(() => { 
-        let url = `http://${window.location.hostname}:${window.location.port}/reseptikirja`
+        let url = `http://${window.location.hostname}:${window.location.port}/recipebook`
         window.location.href = url;
       }, 1500);  
   }
@@ -26,6 +27,7 @@ class Delete extends Component {
 const RecipePage = (props) => {
   let recipe = JSON.parse(props.location.singleRecipe);
   const ingredients = recipe.ingredients;
+  const instructions = recipe.instructions;
     return (
       <div className="container">
         <div className="main">
@@ -47,11 +49,14 @@ const RecipePage = (props) => {
                     })}
                 </TabPanel>
                 <TabPanel>
-                  <p>{recipe.instructions}</p>
+                  {instructions.map((phase, index) => {
+                      return <p key={index}>{phase.instruction}</p>
+                    })}
                 </TabPanel>
               </Tabs>
               </div>
               <Delete id={recipe._id}></Delete>
+              <Link to={{pathname: `/update/${recipe._id}`, singleRecipe: `${JSON.stringify(recipe)}`}}>Update</Link>
             </div>
         </div>
         </div>

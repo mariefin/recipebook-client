@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 const AddIngredients = (props) => {
     const [ ingredientList, setIngredientList ] = useState([{ ingredient: "", amount: "", type: ""}]);
+    const ingredients = props.ingredients;
     const handleInputChange = (index, event) => {
         const values = [...ingredientList];
         if (event.target.name === "ingredientName") {
@@ -22,21 +23,26 @@ const AddIngredients = (props) => {
             props.onChange(ingredientList)
         }
     })
+    useLayoutEffect(() => {
+        if (typeof ingredients !== 'undefined') {
+            setIngredientList(ingredients);
+        }
+    }, [ingredients])
     return (
         <div className="form-row">
         {ingredientList.map((inputField, index ) => {
             return (
             <div className="form-group" key={`${inputField}~${index}`}>
-                <input type="text" className="ingredient" id="ingredientName" name="ingredientName" value={ingredientList.ingredient} 
+                <input type="text" className="ingredient" id="ingredientName" name="ingredientName" value={inputField.ingredient}
                  onChange={event => handleInputChange(index, event) } />
-                <input type="number" className="ingredientAmount" id="ingredientAmount" name="ingredientAmount" value={ingredientList.amount}
+                <input type="number" className="ingredientAmount" id="ingredientAmount" name="ingredientAmount" value={inputField.amount}
                 onChange={event => handleInputChange(index, event) } />
-                <input type="text" className="ingredientType" id="ingredientType" name="ingredientType" value={ingredientList.type}
+                <input type="text" className="ingredientType" id="ingredientType" name="ingredientType" value={inputField.type}
                 onChange={event => handleInputChange(index, event) } />
-                <button className="btn btn-link" type="button" onClick={() => handleAddFields()}>Add more</button>
             </div>
             )
-        })}  
+        })} 
+        <button className="btn btn-link" type="button" onClick={() => handleAddFields()}>Add more</button> 
       </div>
     )
 }
