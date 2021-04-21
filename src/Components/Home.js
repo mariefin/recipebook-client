@@ -29,21 +29,22 @@ class Home extends Component {
         return (
             <div className="container">
                 <div className="main">
-                    <h2>Reseptit</h2>
+                    <h2>Recipes</h2>
                     {
                         reseptit.map(
                             recipe => 
-                            <div className="row" key={recipe._id}>
-                            <div className="col-sm-6 col-12">
+                            <div className="row recipe-box mb-4" key={recipe._id}>
+                            <div className="col-sm-6 col-12 recipe-text">
                               <h2><Link to={{pathname: `/${recipe._id}`, singleRecipe: `${JSON.stringify(recipe)}`}}>{recipe.name}</Link></h2>
+                              <p>{recipe.ingress}</p>
                               <p>
                                   <Link key = {recipe._id} to={{pathname: `/${recipe._id}`, singleRecipe: `${JSON.stringify(recipe)}`}}>
                                       <span onClick= {this.getRecipe}>Read the recipe</span>
                                   </Link>
                               </p>
                             </div>
-                            <div className="col-sm-6 col-12">
-                              <img src={recipe.image} className="img-fluid" alt={recipe.name} />
+                            <div className="col-sm-6 col-12 p-0">
+                              <img src={recipe.image} className="img-fluid recipe-image" alt={recipe.name} />
                             </div>
                           </div>
                         )

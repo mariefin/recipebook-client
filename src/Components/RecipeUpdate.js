@@ -99,15 +99,21 @@ export default class Update extends Component {
     const { showMe } = this.state;
     return (
       <div className="container">
-      <div className="main"> 
         <h3>Update Recipe - { this.recipe.name }</h3>
         <form>
-          <input id="recipeName" type="text" placeholder = "Name" name="Name" defaultValue={ this.recipe.name }/>
-          <input id="recipeIngress" type="text" placeholder="Ingress" name="Ingress" defaultValue={ this.recipe.ingress} />
-          <input id="recipeImage" type="file" placeholder="Upload image" name="Image"/>
+          <div className="row recipe-box">
+            <div className="col-12 col-md-6"><input id="recipeName" type="text" placeholder = "Name" name="Name" defaultValue={ this.recipe.name }/></div>
+            <div className="col-12 col-md-6"><input id="recipeImage" type="file" placeholder="Upload image" name="Image"/></div>
+            <div className="col-12"><input id="recipeIngress" type="text" placeholder="Ingress" name="Ingress" defaultValue={ this.recipe.ingress} /></div>
+          </div>
           <AddIngredients onChange={this.handleIngredients} ingredients={this.recipe.ingredients}/>
           <AddInstructions onChange={this.handleInstructions} instructions={this.recipe.instructions}/>
-          <input id="recipeSave" value="Save" type="button" onClick={this.showMsgSend} onMouseEnter={this.getData}/>
+          <div className="row mb-4">
+            <div className="col-6">
+            <input id="recipeSave" value="Save" type="button" onClick={this.showMsgSend} onMouseEnter={this.getData}/>
+            </div>
+          </div>
+          
         </form>
         {
           showMe ?
@@ -116,8 +122,6 @@ export default class Update extends Component {
               </div>
               :null
         }
-
-      </div>
       </div>
     )
   }

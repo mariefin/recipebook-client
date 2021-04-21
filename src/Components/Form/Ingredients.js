@@ -29,20 +29,27 @@ const AddIngredients = (props) => {
         }
     }, [ingredients])
     return (
-        <div className="form-row">
+        <div>
         {ingredientList.map((inputField, index ) => {
             return (
-            <div className="form-group" key={`${inputField}~${index}`}>
-                <input type="text" className="ingredient" id="ingredientName" name="ingredientName" value={inputField.ingredient}
-                 onChange={event => handleInputChange(index, event) } />
-                <input type="number" className="ingredientAmount" id="ingredientAmount" name="ingredientAmount" value={inputField.amount}
-                onChange={event => handleInputChange(index, event) } />
-                <input type="text" className="ingredientType" id="ingredientType" name="ingredientType" value={inputField.type}
-                onChange={event => handleInputChange(index, event) } />
+            <div className="row recipe-box" key={`${inputField}~${index}`}>
+                <div className="col-12 col-md-6">
+                <input type="text" className="ingredient" placeholder="Ingredient" id="ingredientName" name="ingredientName" value={inputField.ingredient}
+                 onChange={event => handleInputChange(index, event) } /></div>
+                 <div className="col-6 col-md-3">
+                <input type="number" className="ingredientAmount" id="ingredientAmount" placeholder="Amount" name="ingredientAmount" value={inputField.amount}
+                onChange={event => handleInputChange(index, event) } /></div>
+                <div className="col-6 col-md-3">
+                <input type="text" className="ingredientType" id="ingredientType" placeholder="Type" name="ingredientType" value={inputField.type}
+                onChange={event => handleInputChange(index, event) } /></div>
             </div>
             )
-        })} 
-        <button className="btn btn-link" type="button" onClick={() => handleAddFields()}>Add more</button> 
+        })}
+        <div className="row recipe-box">
+            <div className="col-4 mb-1">
+            <button className="btn btn-red-outline" type="button" onClick={() => handleAddFields()}>Add more</button> 
+        </div>
+        </div>
       </div>
     )
 }

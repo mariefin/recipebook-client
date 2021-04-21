@@ -11,7 +11,7 @@ const App = () => {
   return(
     <BrowserRouter basename='/recipebook/'>
       <React.Fragment>
-        <Header pageTitle="Reseptit"/>
+        <Header pageTitle="Recipes"/>
         <Switch>
           <Route exact path = '/' component = { Home } />
           <Route exact path = '/addrecipe' component = { Add } />

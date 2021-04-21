@@ -1,9 +1,10 @@
 import React, { Component} from 'react';
-import { Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import axios from 'axios';
 import '../index.css';
-import 'react-tabs/style/react-tabs.css';
 import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const apiUrl = `http://localhost:8080`;
 const config = {
@@ -21,7 +22,7 @@ class Delete extends Component {
   }
 
   render() {
-      return <button className="btn delete" onClick={this.deleteUser}>Delete</button>
+      return <button className="btn btn-danger delete" onClick={this.deleteUser}>Delete</button>
   }
 }
 const RecipePage = (props) => {
@@ -29,39 +30,40 @@ const RecipePage = (props) => {
   const ingredients = recipe.ingredients;
   const instructions = recipe.instructions;
     return (
-      <div className="container">
-        <div className="main">
-          <div className="row">
-            <div className="col-12 text-center">
-            <div className="my-5">
-                <h2>{recipe.name}</h2>
-                <img src={recipe.image} alt= {recipe.name} className = "max500 img-fluid"/>
-            </div>
-            <div className="my-5">
-              <Tabs>
-                <TabList>
-                  <Tab>Ainesosat</Tab>
-                  <Tab>Ohjeet</Tab>
-                </TabList>
-                <TabPanel>
-                    {ingredients.map((ingredient, index) => {
-                      return <p key={index}>{ingredient.ingredient} {ingredient.amount} {ingredient.type}</p>
-                    })}
-                </TabPanel>
-                <TabPanel>
+      <Container>
+          <Row className="mb-4">
+            <Col xs={12} className="text-center">
+            <h2>{recipe.name}</h2>
+            </Col>
+            </Row>
+            <Row className="recipe-box mb-4">
+              <Col xs={12} md={4} className="p-0 recipe-page-image">                
+                  <img src={recipe.image} alt= {recipe.name} className="img-fluid"/>
+              </Col>
+              <Col xs={12} md={8} className="recipe-text">
+                <h3>Ingredients</h3>
+              {ingredients.map((ingredient, index) => {
+                        return <p key={index} className="mb-2 pt-2 pb-2">{ingredient.ingredient} <strong>{ingredient.amount}{ingredient.type}</strong></p>
+                      })}
+              </Col>
+            </Row>
+            <Row className="recipe-box mb-2">
+              <Col xs={12} className="pb-3 recipe-text">
+                <h3>Instructions</h3>
                   {instructions.map((phase, index) => {
-                      return <p key={index}>{phase.instruction}</p>
+                      return <p key={index} className="mb-2 pt-2 pb-2"><strong>{index+1}.</strong> {phase.instruction}</p>
                     })}
-                </TabPanel>
-              </Tabs>
-              </div>
-              <Delete id={recipe._id}></Delete>
-              <Link to={{pathname: `/update/${recipe._id}`, singleRecipe: `${JSON.stringify(recipe)}`}}>Update</Link>
-            </div>
-        </div>
-        </div>
-      </div>
-      
+                </Col>
+              </Row>
+              <Row className="mb-5">
+                <Col xs={6}>
+                  <Link className="btn btn-red-outline" to={{pathname: `/update/${recipe._id}`, singleRecipe: `${JSON.stringify(recipe)}`}}>Update</Link>
+                </Col>
+                <Col xs={6}>
+                  <Delete id={recipe._id}></Delete>
+                </Col>
+          </Row>
+      </Container>
     )
   }
 

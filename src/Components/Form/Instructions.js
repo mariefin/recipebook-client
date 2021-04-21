@@ -24,16 +24,18 @@ const AddInstructions = (props) => {
         }
     }, [instructions])
     return (
-        <div className="form-row">
+        <div className="row recipe-box">
         {instructionsList.map((inputField, index ) => {
             return (
-            <div className="form-group" key={`${inputField}~${index}`}>
-                <input type="text" className="instructions" id="instrutionsPhase" name="instructions" value={inputField.instruction}
+            <div className="col-12" key={`${inputField}~${index}`}>
+                <input type="text" className="instructions" placeholder={`Phase ${index+1}`} id="instrutionsPhase" name="instructions" value={inputField.instruction}
                  onChange={event => handleInputChange(index, event) } />
             </div>
             )
         })} 
-        <button className="btn btn-link" type="button" onClick={() => handleAddFields()}>Add new phase</button> 
+        <div className="col-6 mb-2">
+            <button className="btn btn-red-outline" type="button" onClick={() => handleAddFields()}>Add new phase</button> 
+        </div>
       </div>
     )
 }

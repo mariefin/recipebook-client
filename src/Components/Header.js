@@ -6,9 +6,9 @@ const Header = ({pageTitle}) => {
     return (
       <header>
       <nav className="navigation">
-        <ul>
-          <li><Link to ='/'>Reseptit</Link></li>
-          <li><Link to ='/addrecipe'>Lisää resepti</Link></li>
+        <ul className="mb-0">
+          <li><Link to ='/'>Recipes</Link></li>
+          <li><Link to ='/addrecipe'>Add Recipe</Link></li>
         </ul>
       </nav>
       <div className="hero" style={{ backgroundImage:`url(${herokuva})` }}>
