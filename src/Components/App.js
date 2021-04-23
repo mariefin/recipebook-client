@@ -9,7 +9,7 @@ import Update from './RecipeUpdate';
 
 const App = () => {
   return(
-    <BrowserRouter basename='/recipebook/'>
+    <BrowserRouter basename='/'>
       <React.Fragment>
         <Header pageTitle="Recipes"/>
         <Switch>

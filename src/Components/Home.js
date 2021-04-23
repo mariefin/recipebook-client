@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../index.css';
-// const apiUrl = `http://localhost:8080`;
-const apiUrl = `http://recipeserver:8080`;
+const apiUrl = `http://localhost:8080`;
+// const apiUrl = `http://recipeserver:8080`;
 
 class Home extends Component {
     constructor(){

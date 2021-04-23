@@ -6,8 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-// const apiUrl = `http://localhost:8080`;
-const apiUrl = `http://recipeserver:8080`
+const apiUrl = `http://localhost:8080`;
+// const apiUrl = `http://recipeserver:8080`
 const config = {
   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'},
 }
@@ -17,7 +17,7 @@ class Delete extends Component {
       event.preventDefault()
       deleteById(this.props.id)  
       setTimeout(() => { 
-        let url = `http://${window.location.hostname}:${window.location.port}/recipebook`
+        let url = `http://${window.location.hostname}:${window.location.port}/`
         window.location.href = url;
       }, 1500);  
   }
