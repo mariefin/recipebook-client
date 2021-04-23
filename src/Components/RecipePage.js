@@ -6,7 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const apiUrl = `http://localhost:8080`;
+// const apiUrl = `http://localhost:8080`;
+const apiUrl = `http://${window.location.hostname}:8080`;
 // const apiUrl = `http://recipeserver:8080`
 const config = {
   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json'},
