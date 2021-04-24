@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import '../index.css';
 import AddIngredients from './Form/Ingredients';
 import AddInstructions from './Form/Instructions';
-const apiUrl = `http://localhost:8080`;
-// const apiUrl = `http://recipeserver:8080`
+const apiUrl = `http://${window.location.hostname}:8080`;
+
 let ingredients;
 let instructions;
 
