@@ -40,11 +40,12 @@ export default class Update extends Component {
 
   showMsgSend() {
     this.showMsg();
-    setTimeout(() => { this.sendData();}, 1000);
-    setTimeout(() => { 
-        let url = `http://${window.location.hostname}:${window.location.port}/`
-        window.location.href = url;
-      }, 1500); 
+    this.sendData();
+    //setTimeout(() => { this.sendData();}, 1000);
+    // setTimeout(() => { 
+        // let url = `http://${window.location.hostname}:${window.location.port}/`
+       //  window.location.href = url;
+      /// }, 1500); 
   }
   handleIngredients = data => ingredients = data
   handleInstructions = data => instructions = data

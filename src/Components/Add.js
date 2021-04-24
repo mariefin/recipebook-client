@@ -36,12 +36,12 @@ export default class Add extends Component {
 
   showMsgSend() {
     this.showMsg();
-    console.log(instructions);
-    setTimeout(() => { this.sendData();}, 1000);
-    setTimeout(() => { 
-        let url = `http://${window.location.hostname}:${window.location.port}/`
-        window.location.href = url;
-      }, 1500);    
+    this.sendData();
+    // setTimeout(() => { this.sendData();}, 1000);
+    // setTimeout(() => { 
+       // let url = `http://${window.location.hostname}:${window.location.port}/`
+       // window.location.href = url;
+    // }, 1500);    
   }
   handleIngredients = data => ingredients = data;
   handleInstructions = data => instructions = data;
@@ -57,7 +57,6 @@ export default class Add extends Component {
         };
       })(file);
       reader.readAsDataURL(file);
-      console.log(this.state.src);
       this.setState({ postData: true});
     } else {
       let { postData } = this.state;
@@ -90,8 +89,6 @@ export default class Add extends Component {
       };
       document.getElementById('recipeName').value = '';
       this.setState({ src: ''});
-      // document.getElementById('recipeInstructions').value = '';
-      // document.getElementById('recipeIngredients').value = '';
 
       this.createRecipe(reci);
     }
